@@ -8,22 +8,30 @@ import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
+import com.example.appmonedaserver.MiApplication
+import com.example.appmonedaserver.db.Cambio
+import com.example.appmonedaserver.db.MiDbMonedas
 import com.example.appmonedaserver.network.CambioApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 val TAG ="WORKER"
+private lateinit var db: MiDbMonedas
 class saveWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
 
+
     override fun doWork(): Result {
+
         return try {
             GlobalScope.launch {
+                db = (applicationContext as MiApplication).database
                 try {
                     val response = CambioApi.retrofitService.getCambioApi()
                     //Guardar los cambios en el DB en la tabla Cambio
 
                     Log.d("API RESPONSE","VEAMOOOOOS")
                     for ((key, value) in response.rates) {
+                        db.cambioDao().insertar(Cambio(0,key,value.toString(), response.time_last_update_utc))
                         println("Clave: $key Valor: $value")
                     }
                     println("Ultima actualización: ${response.time_last_update_utc}")

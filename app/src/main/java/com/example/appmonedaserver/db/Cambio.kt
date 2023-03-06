@@ -10,5 +10,7 @@ data class Cambio (
     @PrimaryKey(autoGenerate = true)
     val  _IDCambio: Int ,
     val codeMonedaCambio: String,
-    val cambio: String
+    val cambio: String,
+    val fechaActualizacion: String
+
 )

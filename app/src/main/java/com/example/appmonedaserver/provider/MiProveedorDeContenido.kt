@@ -36,7 +36,7 @@ class MiProveedorDeContenido : ContentProvider() {
             //query / insert
             1 -> {
                 //ir  a la bd y traer el getall
-                cursor =  db.monedaDao().getAllCursor()
+                cursor =  db.cambioDao().getAllCambioCursor()
             }
 
             //"content://com.example.appmonedaserver/monedas/*"

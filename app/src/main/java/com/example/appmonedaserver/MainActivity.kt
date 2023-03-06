@@ -17,13 +17,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        monedaViewModel.allMoneda.observe(this){
-            it?.let {  ls ->
-                ls.forEach { moneda ->
-                    Log.d("ListaMoneda", "ID= ${moneda._ID}, code=${moneda.codeMoneda}" )
-                }
-            }
-        }
+//        monedaViewModel.allMoneda.observe(this){
+//            it?.let {  ls ->
+//                ls.forEach { moneda ->
+//                    Log.d("ListaMoneda", "ID= ${moneda._ID}, code=${moneda.codeMoneda}" )
+//                }
+//            }
+//        }
 
     }
 }

@@ -25,7 +25,7 @@ class MiApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val workRequest = PeriodicWorkRequestBuilder<saveWorker>(5, TimeUnit.MINUTES).build()
+        val workRequest = PeriodicWorkRequestBuilder<saveWorker>(5, TimeUnit.HOURS).build()
         WorkManager.getInstance(applicationContext).enqueue(workRequest)
 
     }

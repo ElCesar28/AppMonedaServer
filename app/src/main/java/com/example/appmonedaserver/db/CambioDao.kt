@@ -17,6 +17,8 @@ interface CambioDao {
     @Query("DELETE FROM Cambio")
     fun deleteAll() : Int
 
+    @Query("select * from Cambio group by codeMonedaCambio")
+    fun getAllCambioCursor(): Cursor
 
 
 }
