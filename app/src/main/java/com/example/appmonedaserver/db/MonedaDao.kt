@@ -17,7 +17,4 @@ interface MonedaDao {
     @Query("DELETE FROM Moneda")
     fun deleteAll() : Int
 
-    @Query("select * from Moneda")
-    fun getAllCursor(): Cursor
-
 }

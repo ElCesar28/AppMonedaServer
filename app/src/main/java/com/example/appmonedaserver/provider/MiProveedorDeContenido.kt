@@ -10,9 +10,9 @@ import com.example.appmonedaserver.db.MiDbMonedas
 
 private val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
 
-    addURI("com.example.appmonedaserver", "monedas", 1)
-    addURI("com.example.appmonedaserver", "monedas/#", 2)
-    addURI("com.example.appmonedaserver", "monedas/*", 3)
+    addURI("com.example.appmonedaserver", "cambios", 1)
+    addURI("com.example.appmonedaserver", "cambios/#", 2)
+    addURI("com.example.appmonedaserver", "cambios/*", 3)
 }
 
 class MiProveedorDeContenido : ContentProvider() {
@@ -53,26 +53,26 @@ class MiProveedorDeContenido : ContentProvider() {
     }
 
     override fun getType(p0: Uri): String? {
-        var typeMime: String = "vnd.android.cursor.dir/vnd.com.example.provider.monedas"
+        var typeMime: String = "vnd.android.cursor.dir/vnd.com.example.provider.cambios"
         when( sUriMatcher.match(p0)){
 
             //"content://com.example.appmonedaserver/monedas"
             //query / insert
             1 -> {
                 //ir  a la bd y traer el getall
-                typeMime = "vnd.android.cursor.dir/vnd.com.example.provider.monedas"
+                typeMime = "vnd.android.cursor.dir/vnd.com.example.provider.cambios"
             }
 
             //"content://com.example.appmonedaserver/monedas/#"
             //query
             2 -> {
-                typeMime = "vnd.android.cursor.item/vnd.com.example.provider.monedas"
+                typeMime = "vnd.android.cursor.item/vnd.com.example.provider.cambios"
             }
 
             //"content://com.example.appmonedaserver/monedas/*"
             //query / update  /  delete
             3 -> {
-                typeMime = "vnd.android.cursor.item/vnd.com.example.provider.monedas"
+                typeMime = "vnd.android.cursor.item/vnd.com.example.provider.cambios"
             }
             else -> {
 

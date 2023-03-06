@@ -6,6 +6,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.appmonedaserver.db.MiDbMonedas
 import com.example.appmonedaserver.network.CambioApi
+import com.example.appmonedaserver.repository.CambioRepository
 import com.example.appmonedaserver.repository.MonedaRepository
 import com.example.appmonedaserver.work.saveWorker
 import kotlinx.coroutines.CoroutineScope
@@ -21,11 +22,10 @@ class MiApplication : Application() {
     // Using by lazy so the database and the repository are only created when they're needed
     // rather than when the application starts
     val database by lazy { MiDbMonedas.getDatabase(this, applicationScope) }
-    val repositoryMoneda by lazy {  MonedaRepository (database.monedaDao()) }
 
     override fun onCreate() {
         super.onCreate()
-        val workRequest = PeriodicWorkRequestBuilder<saveWorker>(5, TimeUnit.HOURS).build()
+        val workRequest = PeriodicWorkRequestBuilder<saveWorker>(1, TimeUnit.DAYS).build()
         WorkManager.getInstance(applicationContext).enqueue(workRequest)
 
     }
